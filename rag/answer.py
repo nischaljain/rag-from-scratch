@@ -29,8 +29,12 @@ _PROMPT = """\
 Answer the question using only the numbered sources below.
 
 Rules:
-- Use only what the sources say. Do not add outside knowledge.
-- If the sources do not answer the question, reply exactly: {not_found}
+- Every fact in your answer must come from the sources. Do not add facts
+  they do not state.
+- Wording need not match. If a source answers the question under a
+  different name, use it — a question about "holidays" is answered by a
+  source about "annual leave".
+- Only if no source addresses the question, reply exactly: {not_found}
 - Cite the sources you used inline, like [1] or [2].
 - Be brief. Do not restate the question.
 
