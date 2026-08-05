@@ -35,6 +35,7 @@ class Chunk:
     source: str
     page: int
     index: int  # position within the document, 0-based
+    embedding: list[float] | None = None  # filled in by the embedder
 
 
 def chunk_pages(
@@ -98,7 +99,9 @@ def _paragraphs(text: str, target_chars: int) -> list[str]:
 
 def _tail(text: str, overlap_chars: int) -> str:
     """The last `overlap_chars` of `text`, trimmed to a word boundary."""
-    if overlap_chars <= 0 or len(text) <= overlap_chars:
+    if overlap_chars <= 0:
+        return ""
+    if len(text) <= overlap_chars:
         return text
 
     tail = text[-overlap_chars:]
